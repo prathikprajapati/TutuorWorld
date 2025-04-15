@@ -9,30 +9,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Fetch courses from Coursera API
-    fetchCourses();
+    // fetchCourses();
 });
 
-// Fetch courses from Coursera API
-async function fetchCourses() {
-    try {
-        // Note: In production, this would use proper authentication
-        const response = await fetch('https://api.coursera.org/api/courses.v1?fields=name,photoUrl,description,workload,partnerIds&includes=partners,v2Details');
+// async function fetchCourses() {
+//     try {
+//         // Fetch courses from local proxy server to avoid CORS issues
+//         const response = await fetch('http://localhost:3000/api/courses');
         
-        if (!response.ok) {
-            throw new Error('Failed to fetch courses');
-        }
+//         if (!response.ok) {
+//             const errorText = await response.text();
+//             console.error('Failed to fetch courses from proxy. Status:', response.status, 'Response:', errorText);
+//             throw new Error('Failed to fetch courses from proxy');
+//         }
 
-        const data = await response.json();
-        displayCourses(data.elements);
-    } catch (error) {
-        console.error('Error fetching courses:', error);
-        document.getElementById('courses-container').innerHTML = `
-            <div class="col-12 text-center text-danger">
-                <p>Failed to load courses. Please try again later.</p>
-            </div>
-        `;
-    }
-}
+//         const data = await response.json();
+//         displayCourses(data.elements);
+//     } catch (error) {
+//         console.error('Error fetching courses:', error);
+//         document.getElementById('courses-container').innerHTML = `
+//             <div class="col-12 text-center text-danger">
+//                 <p>Failed to load courses. Please try again later.</p>
+//             </div>
+//         `;
+//     }
+// }
 
 // Display courses in the UI
 function displayCourses(courses) {
