@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TutorWorld</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-black text-light">
+    <!-- Navbar will be loaded here -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <!-- About Hero Section -->
+        <section id="about-hero" class="d-flex align-items-center min-vh-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-3 fw-bold text-blueviolet">About TutorWorld</h1>
+                        <p style="color: white;" class="lead muted-text">Empowering learners through interactive education</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="assets/ai-assistant.png" alt="AI Assistant" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 text-blueviolet">Our Mission</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-dark border-blueviolet mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title text-blueviolet">
+                                    <i class="fas fa-bullseye me-2"></i>Vision
+                                </h3>
+                                <p style="color: white;" class="card-text">
+                                    To revolutionize online education by making learning interactive, accessible,
+                                    and personalized for every student worldwide.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-dark border-blueviolet mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title text-blueviolet">
+                                    <i class="fas fa-rocket me-2"></i>Mission
+                                </h3>
+                                <p style="color: white;" class="card-text">
+                                    Provide high-quality, engaging educational content powered by AI technology
+                                    to enhance the learning experience for students of all ages.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="py-5 bg-dark">
+            <div class="container">
+                <h2 class="text-center mb-5 text-blueviolet">Meet Our Team</h2>
+                <div class="row">
+                    <div class="col-md-4 team-member">
+                        <img src="./assets/Logo.jpeg" alt="Team Member" class="team-img">
+                        <h5>John Smith</h5>
+                        <p>Founder & CEO</p>
+                    </div>
+                    <div class="col-md-4 team-member">
+                        <img src="./assets/Logo.jpeg" alt="Team Member" class="team-img">
+                        <h5>Sarah Johnson</h5>
+                        <p>Head of Education</p>
+                    </div>
+                    <div class="col-md-4 team-member">
+                        <img src="./assets/Logo.jpeg" alt="Team Member" class="team-img">
+                        <h5>Michael Chen</h5>
+                        <p>Lead Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section id="contact-cta" class="py-5">
+            <div class="container text-center">
+                <h2 class="mb-4 text-blueviolet">Have Questions?</h2>
+                <button class="btn btn-blueviolet btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">
+                    Contact Us
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-blueviolet">
+                    <h5 class="modal-title text-blueviolet">Contact Us</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control bg-black text-light" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control bg-black text-light" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control bg-black text-light" id="message" rows="3"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-blueviolet">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>TutorWorld</h5>
+                    <p>Interactive learning platform for all skill levels.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>&copy; 2023 TutorWorld. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
