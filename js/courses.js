@@ -1,4 +1,42 @@
-// Coursera API Integration
+const dummyCourses = [
+    {
+        name: "Introduction to Python",
+        description: "Learn the basics of Python programming language.",
+        category: "Technology",
+        level: "Beginner",
+        photoUrl: "assets/python-course.jpg"
+    },
+    {
+        name: "Business Management 101",
+        description: "Fundamentals of managing a successful business.",
+        category: "Business",
+        level: "Intermediate",
+        photoUrl: "assets/business-course.jpg"
+    },
+    {
+        name: "Basics of Astronomy",
+        description: "Explore the wonders of the universe and celestial bodies.",
+        category: "Science",
+        level: "Beginner",
+        photoUrl: "assets/astronomy-course.jpg"
+    },
+    {
+        name: "Digital Painting Techniques",
+        description: "Learn digital art and painting using popular software.",
+        category: "Arts",
+        level: "Advanced",
+        photoUrl: "assets/painting-course.jpg"
+    },
+    {
+        name: "Data Structures and Algorithms",
+        description: "Understand core computer science concepts for coding interviews.",
+        category: "Technology",
+        level: "Advanced",
+        photoUrl: "assets/dsa-course.jpg"
+    }
+];
+
+// Render courses on page load
 document.addEventListener('DOMContentLoaded', function() {
     // Load navbar
     fetch('components/navbar.html')
@@ -8,35 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
             setupNavbar();
         });
 
-    // Fetch courses from Coursera API
-    // fetchCourses();
+    renderCourses(dummyCourses);
+
+    // Setup filter event listeners
+    document.getElementById('category-filter').addEventListener('change', filterCourses);
+    document.getElementById('level-filter').addEventListener('change', filterCourses);
+    document.getElementById('search-courses').addEventListener('input', filterCourses);
 });
 
-// async function fetchCourses() {
-//     try {
-//         // Fetch courses from local proxy server to avoid CORS issues
-//         const response = await fetch('http://localhost:3000/api/courses');
-        
-//         if (!response.ok) {
-//             const errorText = await response.text();
-//             console.error('Failed to fetch courses from proxy. Status:', response.status, 'Response:', errorText);
-//             throw new Error('Failed to fetch courses from proxy');
-//         }
-
-//         const data = await response.json();
-//         displayCourses(data.elements);
-//     } catch (error) {
-//         console.error('Error fetching courses:', error);
-//         document.getElementById('courses-container').innerHTML = `
-//             <div class="col-12 text-center text-danger">
-//                 <p>Failed to load courses. Please try again later.</p>
-//             </div>
-//         `;
-//     }
-// }
-
-// Display courses in the UI
-function displayCourses(courses) {
+function renderCourses(courses) {
     const coursesContainer = document.getElementById('courses-container');
     coursesContainer.innerHTML = '';
 
@@ -68,6 +86,21 @@ function displayCourses(courses) {
     });
 }
 
+function filterCourses() {
+    const categoryFilter = document.getElementById('category-filter').value;
+    const levelFilter = document.getElementById('level-filter').value;
+    const searchQuery = document.getElementById('search-courses').value.toLowerCase();
+
+    const filteredCourses = dummyCourses.filter(course => {
+        const matchesCategory = categoryFilter === 'All Categories' || course.category === categoryFilter;
+        const matchesLevel = levelFilter === 'All Levels' || course.level === levelFilter;
+        const matchesSearch = course.name.toLowerCase().includes(searchQuery) || course.description.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesLevel && matchesSearch;
+    });
+
+    renderCourses(filteredCourses);
+}
+
 // Setup navbar functionality
 function setupNavbar() {
     const navLinks = document.querySelectorAll('.nav-link');
@@ -77,14 +110,4 @@ function setupNavbar() {
             this.classList.add('active');
         });
     });
-}
-
-// Filter courses
-document.getElementById('category-filter').addEventListener('change', filterCourses);
-document.getElementById('level-filter').addEventListener('change', filterCourses);
-document.getElementById('search-courses').addEventListener('input', filterCourses);
-
-function filterCourses() {
-    // Will implement filtering logic after API integration is working
-    console.log('Filtering courses...');
 }

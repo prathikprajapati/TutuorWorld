@@ -13,6 +13,49 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup logout button
     document.getElementById('logout-btn').addEventListener('click', logout);
+
+    // Setup edit profile button
+    document.getElementById('edit-profile-btn').addEventListener('click', () => {
+        const editProfileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+        // Populate modal fields with current user data
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editEmail').value = currentUser.email;
+        }
+        editProfileModal.show();
+    });
+
+    // Setup edit profile form submission
+    document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const newName = document.getElementById('editName').value.trim();
+        const newEmail = document.getElementById('editEmail').value.trim();
+
+        if (!newName || !newEmail) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        // Update localStorage
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            currentUser.name = newName;
+            currentUser.email = newEmail;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            // Update profile display
+            document.getElementById('profile-name').textContent = newName;
+            document.getElementById('profile-email').textContent = newEmail;
+
+            // Update navbar auth UI
+            updateAuthUI();
+
+            // Hide modal
+            const editProfileModal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+            editProfileModal.hide();
+        }
+    });
 });
 
 // Load profile data

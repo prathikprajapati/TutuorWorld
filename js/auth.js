@@ -28,6 +28,42 @@ function setupNavbar() {
             this.classList.add('active');
         });
     });
+
+    updateAuthUI();
+}
+
+// Update authentication UI in navbar
+function updateAuthUI() {
+    const authButtons = document.getElementById('auth-buttons');
+    const profileSection = document.getElementById('profile-section');
+
+    if (checkAuth()) {
+        // User is logged in
+        authButtons.classList.add('d-none');
+        profileSection.classList.remove('d-none');
+
+        // Add logout button if not already present
+        if (!document.getElementById('logoutButton')) {
+            const logoutBtn = document.createElement('button');
+            logoutBtn.id = 'logoutButton';
+            logoutBtn.className = 'btn btn-outline-blueviolet ms-3';
+            logoutBtn.textContent = 'Logout';
+            logoutBtn.addEventListener('click', () => {
+                logout();
+            });
+            profileSection.appendChild(logoutBtn);
+        }
+    } else {
+        // User is not logged in
+        authButtons.classList.remove('d-none');
+        profileSection.classList.add('d-none');
+
+        // Remove logout button if present
+        const logoutBtn = document.getElementById('logoutButton');
+        if (logoutBtn) {
+            logoutBtn.remove();
+        }
+    }
 }
 
 // Setup login form
